@@ -3,7 +3,7 @@ services:
     name: sparked-frontend
     runtime: node
     plan: starter
-    region: frankfurt
+    region: virginia
     branch: main
     buildCommand: npm ci --include=dev && npm run build
     startCommand: npm run start
@@ -14,7 +14,7 @@ services:
         value: 22
       - key: NODE_ENV
         value: production
-      # API_URL, NEXT_PUBLIC_API_URL, FRONTEND_URL — из общей группы sparked-urls
-      # Значения задаются в Render Dashboard → Environment Groups → sparked-urls,
-      # чтобы и фронт, и бэк читали один и тот же адрес без хардкода в файле.
+      # API_URL, NEXT_PUBLIC_API_URL, FRONTEND_URL come from a shared group.
+      # Values are managed in Render Dashboard -> Environment Groups -> sparked-urls
+      # so both frontend and backend read the same URLs without hardcoding them here.
       - fromGroup: sparked-urls
