@@ -14,3 +14,7 @@ services:
         value: 22
       - key: NODE_ENV
         value: production
+      - key: API_URL
+        value: https://sparked-backend.onrender.com
+      - key: NEXT_PUBLIC_API_URL
+        value: https://sparked-backend.onrender.com
