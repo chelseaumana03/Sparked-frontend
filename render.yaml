@@ -14,7 +14,7 @@ services:
         value: 22
       - key: NODE_ENV
         value: production
-      - key: API_URL
-        value: https://sparked-backend.onrender.com
-      - key: NEXT_PUBLIC_API_URL
-        value: https://sparked-backend.onrender.com
+      # API_URL, NEXT_PUBLIC_API_URL, FRONTEND_URL — из общей группы sparked-urls
+      # Значения задаются в Render Dashboard → Environment Groups → sparked-urls,
+      # чтобы и фронт, и бэк читали один и тот же адрес без хардкода в файле.
+      - fromGroup: sparked-urls
