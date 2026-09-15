@@ -102,6 +102,23 @@ services redeploy automatically.
 When you change `NEXT_PUBLIC_API_URL`, Render triggers a rebuild — that value
 is inlined into the client bundle at build time.
 
+### Staging environment
+
+`render.yaml` also defines `sparked-frontend-staging` (our dev environment): same build and start, but
+it deploys from the `staging` branch and reads the `sparked-urls-staging` env group,
+which points at `sparked-backend-staging`. Setup, the Supabase side and the
+branch flow (`feature → staging → main`) are described in the backend README →
+"Staging environment".
+
+`sparked-urls-staging` must contain:
+
+- `API_URL=https://sparked-backend-staging.onrender.com`
+- `NEXT_PUBLIC_API_URL=https://sparked-backend-staging.onrender.com`
+- `FRONTEND_URL=https://sparked-frontend-staging.onrender.com`
+
+Create the `staging` branch here too (`git push origin main:staging`), then run a
+Manual Sync on the frontend Blueprint.
+
 ### First-time deploy checklist
 
 1. Push both repos to GitHub.

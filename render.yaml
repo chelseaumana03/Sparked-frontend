@@ -18,3 +18,23 @@ services:
       # Values are managed in Render Dashboard -> Environment Groups -> sparked-urls
       # so both frontend and backend read the same URLs without hardcoding them here.
       - fromGroup: sparked-urls
+
+  # Staging environment — same build as prod, deployed from the `staging` branch and
+  # wired to sparked-backend-staging through the "sparked-urls-staging" env group.
+  - type: web
+    name: sparked-frontend-staging
+    runtime: node
+    plan: starter
+    region: virginia
+    branch: staging
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: NODE_ENV
+        value: production
+      # API_URL, NEXT_PUBLIC_API_URL, FRONTEND_URL for staging.
+      - fromGroup: sparked-urls-staging
